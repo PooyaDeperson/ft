@@ -1217,3 +1217,17 @@ canvas:active {
   font-size: 1.5rem;
   color: var(--gray-100);
 }
+
+.login-button,
+.logout-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}

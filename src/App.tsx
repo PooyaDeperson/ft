@@ -1,6 +1,9 @@
 import "./App.css";
 import { useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import Login from "./components/Login";
+import { useAuth } from "./contexts/AuthContext";
+import { auth } from "./firebase";
 import CameraPermissions from "./camera-permission";
 import ColorSwitcher from "./components/ColorSwitcher";
 import AvatarSwitcher from "./components/AvatarSwitcher";
@@ -8,6 +11,7 @@ import FaceTracking from "./FaceTracking";
 import AvatarCanvas from "./AvatarCanvas";
 
 function App() {
+  const { currentUser } = useAuth();
   const [url, setUrl] = useState<string | null>(null);
   const [avatarKey, setAvatarKey] = useState(0);
   const [avatarReady, setAvatarReady] = useState(false);
@@ -36,8 +40,19 @@ function App() {
     setMediapipeReady(false);
   };
 
+  async function handleLogout() {
+    await auth.signOut();
+  }
+
   return (
     <div className="App">
+      {currentUser ? (
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      ) : (
+        <Login />
+      )}
       <CameraPermissions onStreamReady={handleStreamReady} />
 
       {avatarReady && videoStream && !mediapipeReady && (
