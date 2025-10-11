@@ -21,7 +21,7 @@ const AvatarOrbitControls: React.FC<AvatarOrbitControlsProps> = ({
   // Compute distance from target
   const targetVector = new Vector3(...target);
   const minDistance = new Vector3(0, 1.68, minZ).distanceTo(targetVector);
-  const maxDistance = new Vector3(0, 1.68, maxZ).distanceTo(targetVector);
+  const maxDistance = new Vector3(0, 5.68, maxZ).distanceTo(targetVector);
 
   return (
     <OrbitControls
